@@ -4,20 +4,22 @@ um atributo password, atribuível na instanciação
 um método login, que tem como parâmetros um email e uma senha e deve comparar esses parâmetros com o email e a senha do usuário e mostrar uma 
 mensagem no console dizendo se o login foi bem sucedido ou não */
 
-alert('Bem vindo a pagina de login!');
+alert('Bem vindo à página de login!');
 let menu;
 let logins = [];
 
 do {
-    const registrations = logins.forEach((user) => {
-        let list = 'Logins cadastrados:\n'
-        list += `Nome: ${user.fullName}
-                E-mail: ${user.email}
-                Senha: ${user.password}`
+    const registrations = logins.map((user) => {
+        return `Nome: ${user.fullName}
+        E-mail: ${user.email}
+        Senha: ${user.password}`;
     });
-    const registersCompleted = registrations.length === 0 ? 'Nenhum usuario cadastrado' : registrations; 
 
-    menu = prompt(parseFloat(`Por favor, escolha uma opção de acordo com seu número.
+    const registersCompleted = registrations.length === 0
+        ? 'Nenhum usuário cadastrado'
+        : 'Logins cadastrados:\n' + registrations.join('\n\n');
+
+    menu = parseFloat(prompt(`Por favor, escolha uma opção de acordo com seu número.
                             ${registersCompleted}
                             1. Cadastrar login.
                             2. Efetuar login.
@@ -29,23 +31,19 @@ do {
 
             if (fullName.length === 0) {
                 alert('Por favor, insira um nome.');
-            return;
+                break; //Já usamos o break aqui para encerrar apenas o switch, não o loop todo
             }
 
             const email = prompt('Por favor, insira um e-mail');
             if (email.length === 0) {
                 alert('Por favor, insira um e-mail');
-                return;
+                break;
             }
 
             const password = prompt('Digite sua senha.');
             if (password.length === 0) {
                 alert('Por favor, insira uma senha.');
-                return;
-            }
-
-            function User (user, ) {
-                
+                break;
             }
             break;
         
@@ -56,7 +54,7 @@ do {
             break;
 
         default:
-            alert('Opção invalida, selecione uma opção entre 1 e 3.')
+            alert('Opção inválida, selecione uma opção entre 1 e 3.');
             break;
     }
 
