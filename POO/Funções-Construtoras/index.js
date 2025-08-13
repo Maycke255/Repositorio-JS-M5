@@ -47,3 +47,35 @@ console.log(pessoa1, pessoa2)
 //Chamando a função falar a partir das instancias
 pessoa1.falar()
 pessoa2.falar()
+
+// ---- OU ENTÃO PODEMOS CRIAR ASSIM -----
+
+//Usamos a palavra reservada class para definir um molde, uma classe e a mesma coisa que uma função construtora
+//A diferença e que podemos organizar melhor 
+class PcGamer {
+    constructor(CPU, motherBoard, SSD, RAM, font, GPU) {
+        this.CPU = CPU;
+        this.motherBoard = motherBoard;
+        this.SSD = SSD;
+        this.RAM = RAM;
+        this.font = font;
+        this.GPU = GPU;
+    }
+
+    falar(){
+        console.log(`Vou monstar um pc com um ${this.CPU} e com uma ${this.GPU}!`)
+    }
+}
+
+const pc = new PcGamer('Ryzen 5 5600', 
+    'MSI A520M-A PRO', 
+    'SSD Kingston 500GB', 
+    'Memoria RAM XPG 8 GB 3200Mhz', 
+    'Fonte MSI MAG 650W, 80 Plus Bronze',
+    'RX 7600 GIGABYTE 8GB');
+
+/* Como temos apenas uma função construtora dentro da class, não precisamos acessar diretamente a função usando "pc.constructor", ela e a função
+constructor que sempre deve existir, ela e responsavel por receber as instancias e as transforma-las em objetos, os metodos abaixo dela que
+precisam ser associados e chamados como uma função */
+console.log(pc);
+pc.falar();
