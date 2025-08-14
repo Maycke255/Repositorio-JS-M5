@@ -1,4 +1,4 @@
-class Info {
+class Details {
     constructor(type, geration, use, brands, highlight) {
         this.type = type;
         this.geration = geration;
@@ -13,5 +13,5 @@ class Info {
     }
 }
 
-module.exports = Info
+module.exports = Details
 

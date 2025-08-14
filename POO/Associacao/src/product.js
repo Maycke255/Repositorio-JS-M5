@@ -1,7 +1,7 @@
 class Product {
-    constructor(pc, Info){
+    constructor(pc, Informations){
         this.pc = pc;
-        this.Info = Info
+        this.Informations = Informations
     }
 }
 
