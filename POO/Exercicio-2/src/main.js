@@ -43,4 +43,11 @@ class Author {
 const author1 = new Author('Maycke')
 const primaryPost = new author1.addPosts('Meu primeiro post', 'Usando classes');
 
-const comment1 = new Comment('Maria', 'Parabens')
+const comment1 = new Comment('Maria', 'Parabens');
+const comment2 = new Comment('Wellignton', 'Esta muito bom!')
+
+primaryPost.addComment(comment1);
+primaryPost.addComment(comment2);
+
+console.log(author1);
+console.log(primaryPost);
