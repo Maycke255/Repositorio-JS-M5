@@ -7,47 +7,55 @@ Você também deverá criar uma classe Author, e os objetos da classe Post tamb�
 Além disso, os objetos da classe Author também devem possuir um array de posts (objetos da classe Post) e um método específico para criação de 
 posts, que deverá criar uma instância utilizando aquele próprio autor, incluir o post no array e então retornar o post criado. */
 
-class Comment {
-    constructor(author, content){
-        this.author = author;
-        this.content = content;
-    }
-}
+//Importando os arquivos
+import { Comment } from './posts.js';
+import { Author } from './authors.js';
 
-class Post {
-    constructor(title, content, author) {
-        this.title = title;
-        this.content = content;
-        this.author = author;
-        this.comments = [];
-    }
+//Definindo o autor do post
+const author = new Author('Maycke');
 
-    addComment(comment){
-        this.comments.push(comment);
-    }
-}
+/* Atravez da variavel author que definimos antes, conseguimos acessar todos os seus metodos criados dentro da class Author, por exemplo: */
+const newPost = author.createPost('Usando classes', 'Classes são dificeis');
 
-class Author {
-    constructor(name){
-        this.name = name;
-        this.posts = [];
-    }
+const comment1 = new Comment('Moises', 'Parabens!');
+const comment2 = new Comment('Wellignton', 'Continue assim.');
 
-    addPosts(title, content){
-        const post = new Post(title, content, this); //O proprio autor
-        this.posts.push(post);
-        return post;
-    }
-}
+newPost.addComments(comment1);
+newPost.addComments(comment2);
 
-const author1 = new Author('Maycke')
-const primaryPost = new author1.addPosts('Meu primeiro post', 'Usando classes');
+console.log(author);
+console.log(newPost);
 
-const comment1 = new Comment('Maria', 'Parabens');
-const comment2 = new Comment('Wellignton', 'Esta muito bom!')
+/* --- COMO FUNCIONA? ---
 
-primaryPost.addComment(comment1);
-primaryPost.addComment(comment2);
-
-console.log(author1);
-console.log(primaryPost);
++----------------+
+|    Author      |
++----------------+
+| name           |
+| posts[]        |  <---- array de Post
++----------------+
+| createPost()   |  --> cria e retorna Post já vinculado ao Author
++----------------+
+        |
+        | 1 autor cria vários posts
+        v
++----------------+
+|     Post       |
++----------------+
+| title          |
+| content        |
+| author         |  <---- referência para um Author
+| comments[]     |  <---- array de Comment
++----------------+
+| addComment()   |  --> adiciona Comment no array
++----------------+
+        |
+        | 1 post pode ter vários comentários
+        v
++----------------+
+|    Comment     |
++----------------+
+| content        |
+| author         |  <-- aqui pode ser só o nome ou até um Author
++----------------+
+*/
