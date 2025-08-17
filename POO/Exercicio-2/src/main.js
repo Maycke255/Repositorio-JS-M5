@@ -14,12 +14,23 @@ import { Author } from './authors.js';
 //Definindo o autor do post
 const author = new Author('Maycke');
 
-/* Atravez da variavel author que definimos antes, conseguimos acessar todos os seus metodos criados dentro da class Author, por exemplo: */
+/* Atravez da variavel author que definimos antes, conseguimos acessar todos os seus metodos criados dentro da class Author, por exemplo: 
+
+const mercado = new Carrinho('Costela', 'Melancia');
+o que está acontecendo é:
+new Carrinho(...) cria um objeto novo, baseado no “molde” da classe Carrinho.
+Esse objeto (mercado) herda todas as propriedades que você definiu no constructor (no caso frutas, carnes, outros).
+E também herda todos os métodos que você definiu dentro da classe (janta, e qualquer outro que exista lá).
+
+Por isso, você pode fazer:
+mercado.janta(); // Usa o método definido na classe*/
 const newPost = author.createPost('Usando classes', 'Classes são dificeis');
 
+//Criando as variaveis comments para o post
 const comment1 = new Comment('Moises', 'Parabens!');
 const comment2 = new Comment('Wellignton', 'Continue assim.');
 
+//Acessando o metodo para adicionar os comments ao post
 newPost.addComments(comment1);
 newPost.addComments(comment2);
 
