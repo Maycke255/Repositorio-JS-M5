@@ -16,17 +16,31 @@ class Login {
     displayPassword(password){
         if (this.#password === password) {
             return this.#password
+        } else {
+            return 'Senha icorreta';
         }
     }
 
+    //Podemos também alterar essa propriedade privada somente atravez de um metodo da propria classe, fora disso, não e possivel alterar
     changePassword(newPassword){
-        
+        return this.#password = newPassword
     }
 }
 
 //Mesmo se na instancia definimos o parametro, e realmente temos que definir, não conseguimos visualizar se exibirmos no console, então temos
 //que criar um método para visualizar a senha
-const newUser = new Login('Maycke', '123456');
-
+const newUser = new Login('maycke@gmail.com', 123456);
+//Exibe apenas o nome que e um objeto publico, a senha nem se quer aparece
 console.log(newUser);
-console.log(newUser.displayPassword('123456'));
+
+//Exibindo a senha
+console.log(newUser.displayPassword(123456));
+
+//Alteração da senha atravez do metodo
+console.log(newUser.changePassword(101010));
+
+//Colocando a mesma senha de proposito, vai dar erro
+console.log(newUser.displayPassword(123456));
+
+
+// =================  HERANÇA ================= //
