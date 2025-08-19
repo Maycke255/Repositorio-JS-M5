@@ -44,3 +44,77 @@ console.log(newUser.displayPassword(123456));
 
 
 // =================  HERANÇA ================= //
+/* Herança nada mais e quando uma classe herda os atributos e métodos de uma outra classe, analogia simples:
+- Você tem uma classe mãe com os varios parametros e metodos que outras classes também podem herdar, exemplo, class Residencia(numero, bloco){}
+- Você tem uma classe filha que pode herdar todos os parametros da mãe, como uma arvore genealogica, exemplo, class Casa(){} <- Vai herdar
+da class residencia, e ela também pode ter seus metodos e parametros unicos. Como fazemos isso?  */
+
+//Classe mãe onde vai ter varias outras subclasses
+class Residencia {
+    constructor(cidade, bloco){
+        this.cidade = cidade;
+        this.bloco = bloco;
+    }
+}
+
+class Casinha extends Residencia{} //<- Se colocarmos assim normalmente sem passar nada,  classe ainda funciona, e nesse caso teriamos que passar
+// as entradas dos metodos da classe mãe apenas */
+//Passamos apenas os parametros da classe mãe
+const casinha = new Casinha('Mirandopolis', '3-A');
+console.log(casinha);
+
+class Casa extends Residencia{
+    //No caso se quisermos passar novos atributos, atributos proprios para a classe, precisamos passar também nos parametros os mesmos parametros
+    //da classe mãe
+    constructor(cidade, bloco, rua, numero){
+        //E alem disso, precisamos também usar os a palavra reservada super e importar os parametros da classe mãe
+        super(cidade, bloco);
+        //Só apos ele passamos os parametros unicos da classe
+        this.rua = rua;
+        this.numero = numero;
+    }
+}
+
+//Apos isso passamos os atributos da classe mãe e da classe filha
+const casa = new Casa('Taiobeiras', 'Santos Cruzeiro', 'Pedra Azul', 397);
+console.log(casa);
+
+//E se quisermos herdar metodos? Temos duas formas
+class Animal {
+    constructor(animal){
+        this.animal = animal;
+    }
+
+    fazerSom(){
+        return `O ${this.animal} fez um som!!`;
+    }
+}
+
+const meuGato = new Animal('gato');
+console.log(meuGato);
+
+class meuPet extends Animal{
+    constructor(animal, nome){
+        super(animal);
+        this.nome = nome;
+    }
+
+    // //Metodo override, consiste em reescrever o método
+    // fazerSom(){
+    //     return `O ${this.animal} fez um som!!`
+    // }
+
+    //Metodo super usado em metodos, consiste também em usar o super e chamar o metodo da classe mãe, Ex:
+    /* fazerSom(){
+        super.fazerSom() <- Nesse caso estamos chamando o metodo da mãe, aproveitando apenas a lógica.
+    } */
+
+    //E se quisermos mudar o metodo e adicionar mais parametros?
+    fazerSom(idade) { //Adicionamos um parametro a mais
+        const som = super.fazerSom(); // chama a versão da mãe
+        return `${som} O nome dela é ${this.nome} e ela tem ${idade} anos.` //E adicionamos mais conteudo
+    }
+}
+
+const dogFezAu = new meuPet('cachorro', 'Shakira');
+console.log(dogFezAu.fazerSom(5));
