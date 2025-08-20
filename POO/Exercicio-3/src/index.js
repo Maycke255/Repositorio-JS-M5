@@ -26,6 +26,7 @@ Uma classe específica para elementos form, que deve ser uma subclasse da class
 adicionar elementos como filhos (através das instâncias das classes Component e suas subclasses). */
 
 class Component {
+
     #type;
 
     constructor(type, id, classe){
@@ -34,19 +35,30 @@ class Component {
         this.classe = classe;
     }
     
-    createComponent(){
-        const input = document.createComment('input');
+    build(){
+        const input = document.createElement('input');
+
         input.type = this.#type;
         input.id = this.id;
         input.class = this.classe;
         return input;
     }
 
-    addComponetDOM(main){
-        const main = document.getElementById('main');
-        const input = this.createComponent();
+    render(container){
+        const main = document.getElementById(container);
+
+        const input = this.build();
         main.appendChild(input);
+    }
+
+    displayComponent(){
+        if (this.#type) {
+            return `${this.#type} e ${this.id}`
+        }
     }
 }
 
-const componet1 = new Component('input', 'text', 'name', 'name-input');
+
+const componet1 = new Component('text', 'name', 'name-input');
+componet1.render('main');
+console.log(componet1.displayComponent())
