@@ -40,8 +40,12 @@ class Component {
 
         input.type = this.#type;
         input.id = this.id;
-        input.class = this.classe;
+        input.className = this.classe;
         return input;
+    }
+
+    get type(){
+        return this.#type;
     }
 
     render(container){
@@ -58,7 +62,67 @@ class Component {
     }
 }
 
+class Input extends Component {
+    constructor(type, id, classe, value){
+        super(type, id, classe)
+        this.value = value;
+    }
+
+    build(){
+        const input = document.createElement('input')
+
+        input.type = this.type;
+        input.id = this.id;
+        input.className = this.classe;
+        input.value = this.value;
+        return input;
+    }
+
+    render(container){
+        const render = super.render(container);
+        return render;
+    }
+}
+
+class Label extends Component {
+    constructor(id, classe, text, forLabel){
+        super(null, id, classe);
+        this.text = text;
+        this.for = forLabel;
+    }
+
+    build(){
+        const label = document.createElement('label');
+
+        label.innerText = this.text;
+        label.htmlFor = this.for;
+        label.id = this.id;
+        label.className = this.classe;
+        return label;
+    }
+    
+    render(container){
+        const render = super.render(container)
+        return render;
+    }
+}
+
+class Form extends Component{
+    constructor(id, classe){
+        super(null, id, classe);
+        this.children = [] // <- Componentes do form, como label inputs, etc
+    }
+}
+
 
 const componet1 = new Component('text', 'name', 'name-input');
 componet1.render('main');
-console.log(componet1.displayComponent())
+console.log(componet1.displayComponent());
+
+const inputBtn = new Input('button', 'cancelBtn', 'btn-cancel', 'CANCELAR');
+inputBtn.render('main');
+console.log(inputBtn)
+;
+const label1 = new Label('nameLabel', 'name-label', 'Nome: ', 'name-input');
+label1.render('main');
+console.log(label1);
