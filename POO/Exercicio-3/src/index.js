@@ -102,7 +102,7 @@ class Label extends Component {
     }
     
     render(container){
-        const render = super.render(container)
+        const render = super.render(container);
         return render;
     }
 }
@@ -112,17 +112,59 @@ class Form extends Component{
         super(null, id, classe);
         this.children = [] // <- Componentes do form, como label inputs, etc
     }
+
+    build(){
+        const form = document.createElement('form');
+
+        form.id = this.id;
+        form.className = this.classe;
+
+        this.children.forEach((child) => {
+            form.appendChild(child.build()); //Chamando o metodo build para criar o elemento html
+        });
+
+        return form;
+    }
+
+    addChild(component){
+        this.children.push(component);
+    }
+
+    /* O que a função addChiçd e build fazem nesse caso?
+    addChild(child) 👉 apenas adiciona a instância (objeto) no array this.children.
+    Ou seja, guarda o objeto JS (Input, Label, Form, etc).
+    this.children.forEach(child => { form.appendChild(child.build()) }) 👉 percorre cada objeto armazenado e chama o .build() de cada um, que
+    devolve o elemento HTML real, e então adiciona no <form>. */
+    render(container){
+        const main = document.getElementById(container);
+
+        const form = this.build();
+        main.appendChild(form);
+        return form;
+    }
 }
 
+const formTest = new Form('form1', 'form-class');
 
-const componet1 = new Component('text', 'name', 'name-input');
-componet1.render('main');
-console.log(componet1.displayComponent());
-
-const inputBtn = new Input('button', 'cancelBtn', 'btn-cancel', 'CANCELAR');
-inputBtn.render('main');
-console.log(inputBtn)
-;
 const label1 = new Label('nameLabel', 'name-label', 'Nome: ', 'name-input');
-label1.render('main');
+// label1.render('main');
 console.log(label1);
+
+const component1 = new Component('text', 'name', 'name-input');
+// componet1.render('main');
+console.log(component1.displayComponent());
+console.log(component1)
+
+const inputOk = new Input('submit', 'submitBtn','submit-btn', 'ENVIAR');
+const inputCancel = new Input('button', 'cancelBtn', 'btn-cancel', 'CANCELAR');
+// inputBtn.render('main');
+console.log(inputOk);
+console.log(inputCancel);
+
+
+formTest.addChild(label1);
+formTest.addChild(component1);
+formTest.addChild(inputOk);
+formTest.addChild(inputCancel);
+
+formTest.render('main');
