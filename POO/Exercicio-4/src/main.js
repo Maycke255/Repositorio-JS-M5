@@ -15,7 +15,8 @@ método de ataque para que o cálculo seja de duas vezes a diferença entre os p
 entre os pontos de ataque do personagem atual e a defesa do alvo.
 
 -Uma classe Mage que representa outro tipo de personagem e também herda de Character. No entanto, essa classe também deve ter um atributo 
-para pontos de magia. Além disso, ela também deve sobrescrever o método de ataque para que o cálculo utilize os pontos de ataque somados aos pontos de magia. 
+para pontos de magia. Além disso, ela também deve sobrescrever o método de ataque para que o cálculo utilize os pontos de ataque somados aos pontos 
+de magia. 
 
 -No entanto, essa classe também deve ter um atributo para pontos de magia.
 
@@ -38,3 +39,22 @@ apenas os pontos de defesa devem ser considerados (comportamento normal).
 de escudo devem ser somados aos de defesa para fazer o cálculo do método de ataque. Ao trocar para a posição de ataque apenas os pontos de 
 defesa devem ser considerados (comportamento normal).
 -Obs.: Você pode criar um outro arquivo, importar as classes e criar algumas instâncias para testá-las. */
+
+import { Character, Thief } from "./character.js";
+import { Mage } from "./mage.js";
+
+const character = new Character('Maycke', 40, 40, 20);
+//Primeiro definimos uma vida base
+let lifeEnemy = 10;
+
+//Apos isso retornamos a nova vida com a instancia
+lifeEnemy = character.attackEnemy('Inimigo', 20, lifeEnemy);
+
+//Personagem thief
+const thief = new Thief('Maycke', 40, 30, 20);
+lifeEnemy = thief.attackEnemy('Inimigo', 20, lifeEnemy);
+
+//Personagem mago
+const nebulous = new Mage('Tiago', 10, 30, 20, 10);
+lifeEnemy = nebulous.attackEnemy('Fulano', 10, lifeEnemy);
+nebulous.healing(thief);

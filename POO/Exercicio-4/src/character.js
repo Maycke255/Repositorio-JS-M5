@@ -1,4 +1,4 @@
-class Character {
+export class Character {
     constructor(name, ptLife, attack, deffense){
         this.name = name;
         this.ptLife = ptLife;
@@ -7,23 +7,53 @@ class Character {
     }
 
     //Metodo para atacar
-    attack(target, deffenseTarget, ptLifeTarget){
-        if(isNaN(deffenseTarget && ptLifeTarget)){
-            console.error('INSIRA NÚMEROS PARA REPRESENTAR A VIDA E A DEFESA!');
-            return;
+    attackEnemy(target, deffenseTarget, ptLifeTarget){
+        console.log(`Você escolheu a classe do personagem principal, seu dano sera normal!`)
+
+        let damege = this.attack - deffenseTarget;
+
+        //Caso dano causado seja menor que 0, o inimigo não sofreu dano algum
+        if (damege < 0) damege = 0;
+        console.log(`${this.name} atacou ${target}, dano causado ${damege}`);
+
+        //Aplica o dano a vida do inimigo
+        ptLifeTarget -= damege;
+
+        //Caso o damage aplicado seja menor ou igual 0, significa que morreu 
+        if (ptLifeTarget <= 0){
+            console.log(`${target} morreu! Fatality.`);
+            ptLifeTarget = 0; //Para não deixar a vida negativa
+        } else {
+            console.log(`${target} ficou vivo, vida restante: ${ptLifeTarget}`);
         }
 
-        const differenceDff = this.attack - deffenseTarget;
-        console.log(`Dano causado: ${differenceDff}.`);
-        console.log(deffenseTarget)
-
-        //Caso o resultado do dano dentre o ataque e a defesa seja menor que zero E seja menor ainda que a vida, significa que o alvo morreu
-        if (differenceDff <= 0 && differenceDff < ptLifeTarget){
-            console.log(`O alvo ${target} morreu! Fatality!!`);
-            return;
-        }
+        //Retorna a vida
+        return ptLifeTarget;
     }
 }
 
-const character = new Character('Maycke', 40, 100, 20);
-character.attack('Inimigo', 20, 10);
+export class Thief extends Character {
+    constructor(name, ptLife, attack, deffense){
+        super(name, ptLife, attack, deffense)
+    }
+
+    attackEnemy(target, deffenseTarget, ptLifeTarge){
+        console.log(`Você escolheu a classe Thief, seu dano sera em dobro!`)
+
+        let damege = (this.attack * 2) - deffenseTarget;
+
+        if (damege < 0) damege = 0;
+
+        console.log(`${this.name} atacou ${target}, dano causado: ${damege}`);
+
+        ptLifeTarge -= damege;
+
+        if (ptLifeTarge <= 0){
+            console.log(`${target} morreu! Fatality.`);
+        } else {
+            console.log(`${target} ficou vivo, vida restante: ${ptLifeTarget}`);
+        }
+
+        return ptLifeTarge;
+    }
+}
