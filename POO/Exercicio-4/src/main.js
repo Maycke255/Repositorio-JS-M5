@@ -42,6 +42,7 @@ defesa devem ser considerados (comportamento normal).
 
 import { Character, Thief } from "./character.js";
 import { Mage } from "./mage.js";
+import { Warrior } from "./warrior.js";
 
 const character = new Character('Maycke', 40, 40, 20);
 //Primeiro definimos uma vida base
@@ -58,3 +59,8 @@ lifeEnemy = thief.attackEnemy('Inimigo', 20, lifeEnemy);
 const nebulous = new Mage('Tiago', 10, 30, 20, 10);
 lifeEnemy = nebulous.attackEnemy('Fulano', 10, lifeEnemy);
 nebulous.healing(thief);
+
+//Personagem warrior
+const warrior = new Warrior('Kaio', 20, 30, 20, 10, 'ataque');
+lifeEnemy = warrior.attackEnemy('Inimigo', 10, lifeEnemy);
+warrior.changePosition()
