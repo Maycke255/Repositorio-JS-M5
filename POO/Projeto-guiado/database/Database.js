@@ -103,6 +103,7 @@ export class Database {
         console.table(this.#storage.books);
         console.table(this.#storage.posters);
         console.table(this.#storage.users);
+        // console.log(this.#storage.orders[0].data); // deve mostrar o array
         console.table(this.#storage.orders.map(order => order.data)); //Exibe o metodo get data
     }
 }
