@@ -1,5 +1,4 @@
 import { Operation } from "./Operarions.js";
-import { User } from './User.js';
 
 export class Deposit extends Operation {
     constructor(date, value){
@@ -7,6 +6,6 @@ export class Deposit extends Operation {
     }
 
     depositMade(){
-        console.log(`Deposito realizado na conta de ${User}`);
+        console.log(`Deposito realizado na sua propria conta.`);
     }
 }
