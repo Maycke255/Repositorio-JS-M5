@@ -18,18 +18,39 @@ export class App {
     }
 
     //Método de deposito, depositando na conta do usuario com a data e o valor digitado, em seguida salvamos na array e adicionamos o valor ao saldo
-    makeDeposit(date, value) {
-        const date = new Date();
-        const newDeposit = new Deposit({ date, value} );
+    makeDeposit(date, value, userName) {
+        const newDeposit = new Deposit({ date, value, userName });
         App.#base.saveDeposit(newDeposit);
-        App.#base.displayValue(value);
+
+        const user = App.#base.getUserByName(userName);
+        if (user) {
+            user.saldo += value;
+            console.log(`Depósito de R$${value} feito na conta de ${user.name}`);
+        }
     }
 
-    makeTransfer(date, value, sender, recipient){
-        const newTransfer = new Transfer({ date, value, sender, recipient });
-        App.#base.saveTransfer(newTransfer);
-        const whoTransferred = App.#base.
-        App.#base.displayValue(value);
+    makeTransfer(date, value, senderName, recipientName){
+    const newTransfer = new Transfer({ date, value, senderName, recipientName });
+    App.#base.saveTransfer(newTransfer);
+
+    // procurar os usuários no Account
+    const sender = App.#base.getUserByName(senderName);
+    const recipient = App.#base.getUserByName(recipientName);
+
+    if (!sender || !recipient) {
+        console.log("Usuário não encontrado!");
+        return;
     }
+
+    // descontar do sender
+    if (sender.saldo >= value) {
+        sender.saldo -= value;
+        recipient.saldo += value;
+        console.log(`Transferência de R$${value} feita de ${sender.name} para ${recipient.name}`);
+    } else {
+        console.log("Saldo insuficiente!");
+    }
+}
+
 }
 
