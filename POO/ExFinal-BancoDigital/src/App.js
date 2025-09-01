@@ -1,9 +1,10 @@
 import { User } from "./entities/User.js";
 import { Deposit } from "./entities/Deposit.js";
-import { Base } from "../database/Base.js";
+import { Transfer } from "./entities/Transfer.js";
+import { Account } from "./entities/Account.js";
 
 export class App {
-    static #base = new Base();
+    static #base = new Account();
 
     //Método para criar o usuario, usamos como base o método da classe User
     //Em seguida, acessamos a propria função, chamamos a nossa base de dados, e o metodo saveUser que e responsavel por salvar os usuarios
@@ -16,10 +17,19 @@ export class App {
         return App.#base.find('users')
     }
 
-    makeDeposit() {
+    //Método de deposito, depositando na conta do usuario com a data e o valor digitado, em seguida salvamos na array e adicionamos o valor ao saldo
+    makeDeposit(date, value) {
         const date = new Date();
-        return date;
-        // const newDeposit = new Deposit()
+        const newDeposit = new Deposit({ date, value} );
+        App.#base.saveDeposit(newDeposit);
+        App.#base.displayValue(value);
+    }
+
+    makeTransfer(date, value, sender, recipient){
+        const newTransfer = new Transfer({ date, value, sender, recipient });
+        App.#base.saveTransfer(newTransfer);
+        const whoTransferred = App.#base.
+        App.#base.displayValue(value);
     }
 }
 

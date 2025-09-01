@@ -1,6 +1,8 @@
-export class Base {
+export class Account {
     #data = {
         users: [],
+        balance: [],
+        deposits: [],
         operations: [],
         loans: []
     }
@@ -27,4 +29,23 @@ export class Base {
         }
     }
 
+    getDeposits(){
+        return this.#data.deposits;
+    }
+
+    saveDeposit(deposit){
+        this.#data.deposits.push(deposit);
+    }
+
+    saveTransfer(transfer){
+        this.#data.operations.push(transfer);
+    }
+
+    get displayValue (){
+        return this.#data.balance;
+    }
+
+    set displayValue (value){
+        this.#data.balance += value;
+    }
 }
