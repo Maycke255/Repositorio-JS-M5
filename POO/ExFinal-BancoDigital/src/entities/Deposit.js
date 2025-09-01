@@ -5,7 +5,7 @@ export class Deposit extends Operation {
         super(date, value);
     }
 
-    depositMade(){
-        console.log(`Deposito realizado na sua propria conta.`);
+    operationCarriedOut(user){
+        console.log(`Deposito realizado na propria conta de ${user}, no valor de ${this.value} na data de ${this.date}.`);
     }
 }

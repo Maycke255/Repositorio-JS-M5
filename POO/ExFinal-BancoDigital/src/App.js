@@ -15,5 +15,11 @@ export class App {
     getUser(){
         return App.#base.find('users')
     }
+
+    makeDeposit() {
+        const date = new Date();
+        return date;
+        // const newDeposit = new Deposit()
+    }
 }
 
