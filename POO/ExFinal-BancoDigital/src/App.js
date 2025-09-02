@@ -2,14 +2,15 @@ import { User } from "./entities/User.js";
 import { Deposit } from "./entities/Deposit.js";
 import { Transfer } from "./entities/Transfer.js";
 import { Account } from "./entities/Account.js";
+import { Loan } from "./entities/Loan.js";
 
 export class App {
     static #base = new Account();
 
     //Método para criar o usuario, usamos como base o método da classe User
     //Em seguida, acessamos a propria função, chamamos a nossa base de dados, e o metodo saveUser que e responsavel por salvar os usuarios
-    createUser(name, email, password, account){
-        const newUser = new User(name, email, password, account);
+    createUser(name, email, password, account, balance){
+        const newUser = new User(name, email, password, account, balance);
         App.#base.saveUser(newUser);
     }
 
@@ -30,27 +31,41 @@ export class App {
     }
 
     makeTransfer(date, value, senderName, recipientName){
-    const newTransfer = new Transfer({ date, value, senderName, recipientName });
-    App.#base.saveTransfer(newTransfer);
+        const newTransfer = new Transfer({ date, value, senderName, recipientName });
+        App.#base.saveTransfer(newTransfer);
 
-    // procurar os usuários no Account
-    const sender = App.#base.getUserByName(senderName);
-    const recipient = App.#base.getUserByName(recipientName);
+        // procurar os usuários no Account
+        const sender = App.#base.getUserByName(senderName);
+        const recipient = App.#base.getUserByName(recipientName);
 
-    if (!sender || !recipient) {
-        console.log("Usuário não encontrado!");
+        if (!sender || !recipient) {
+            console.log("Usuário não encontrado!");
+            return;
+        }
+
+        // descontar do sender
+        if (sender.saldo >= value) {
+            sender.saldo -= value;
+            recipient.saldo += value;
+            console.log(`Transferência de R$${value} feita de ${sender.name} para ${recipient.name}`);
+        } else {
+            console.log("Saldo insuficiente!");
+        }
+    }
+
+    //Espera receber algo como: date: 02/09/2025, 10000, 2.9, 3.5, 12
+    takeOutALoan(date, value, name, installmentsCount){
+    const existingLoans = App.#base.getLoansByName(name);
+
+    if (existingLoans.length >= 5) {
+        console.log("Você não pode fazer novos empréstimos até quitar alguns existentes.");
         return;
     }
 
-    // descontar do sender
-    if (sender.saldo >= value) {
-        sender.saldo -= value;
-        recipient.saldo += value;
-        console.log(`Transferência de R$${value} feita de ${sender.name} para ${recipient.name}`);
-    } else {
-        console.log("Saldo insuficiente!");
-    }
-}
+    const loan = new Loan(date, value, name, installmentsCount);
+    App.#base.saveLoan(loan);
 
+    console.log(`Empréstimo de R$${value} criado para ${name}`);
+    }
 }
 

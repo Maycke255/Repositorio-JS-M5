@@ -40,4 +40,16 @@ export class Account {
     saveTransfer(transfer){
         this.#data.operations.push(transfer);
     }
+
+    getLoansByName(name) {
+        return this.#data.loans.find((l) => l.name === name);
+    }
+
+    saveLoan(loan){
+        this.#data.loans.push(loan);
+    }
+
+    returnLoans(){
+        return this.#data.loans;
+    }
 }

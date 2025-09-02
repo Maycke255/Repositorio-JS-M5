@@ -6,15 +6,11 @@ export class Operation {
         this.#value = value;
     }
 
-    operationCarriedOut(){
-        console.log('Operação relizada.')
+    get value (){
+        return this.#value;
     }
 
-    // get value (){
-    //     return this.#value;
-    // }
-
-    // set value (newValue){
-    //     return newValue = this.#value;
-    // }
+    set value (newValue){
+        return newValue = this.#value;
+    }
 }
