@@ -30,6 +30,7 @@ export class App {
         }
     }
 
+    //Método de transferencia
     makeTransfer(date, value, senderName, recipientName){
         const newTransfer = new Transfer({ date, value, senderName, recipientName });
         App.#base.saveTransfer(newTransfer);
@@ -53,19 +54,40 @@ export class App {
         }
     }
 
-    //Espera receber algo como: date: 02/09/2025, 10000, 2.9, 3.5, 12
+    //Espera receber algo como: date: 02/09/2025, 10000, 12
     takeOutALoan(date, value, name, installmentsCount){
-    const existingLoans = App.#base.getLoansByName(name);
+        const existingLoans = App.#base.getLoansByName(name);
 
-    if (existingLoans.length >= 5) {
-        console.log("Você não pode fazer novos empréstimos até quitar alguns existentes.");
-        return;
+        if (existingLoans.length >= 5) {
+            console.log("Você não pode fazer novos empréstimos até quitar alguns existentes.");
+            return;
+        }
+
+        const loan = new Loan(date, value, name, installmentsCount);
+        App.#base.saveLoan(loan);
+
+        console.log(`Empréstimo de R$${value} criado para ${name}`);
     }
 
-    const loan = new Loan(date, value, name, installmentsCount);
-    App.#base.saveLoan(loan);
+    //Exibição:
+    find (key){
+        return App.#base.data[key];
+    }
 
-    console.log(`Empréstimo de R$${value} criado para ${name}`);
+    displayDeposits(){
+        return App.#base.data.deposits;
+    }
+
+    displayOperations(){
+        return App.#base.data.operations;
+    }
+
+    displayLoan(){
+        return App.#base.data.loans;
+    }
+
+    displayUsers(){
+        return App.#base.data.users;
     }
 }
 

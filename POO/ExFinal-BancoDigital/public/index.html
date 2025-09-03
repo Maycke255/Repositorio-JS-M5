@@ -14,15 +14,51 @@
     </header>
 
     <main>
-        <h2>Seções:</h2>
-        <ul>
-            <li>
-                <a href="./entities/deposit.html">Déposito.</a>
-            </li>
-            <li>
-                <a href="./entities/transfer.html">Transferencia.</a>
-            </li>
-        </ul>
+        <section class="sections">
+            <ul>
+                <div>
+                    <h2>Seções:</h2>
+                </div>
+                <li>
+                    <a href="./entities/deposit.html">Área de depósito</a>
+                </li>
+                <li>
+                    <a href="./entities/transfer.html">Área de transferência</a>
+                </li>
+                <li>
+                    <a href="./entities/loans.html">Área de emprestimos</a>
+                </li>
+                <li>
+                    <a href="./entities/users.html">Área de criação de usuarios</a>
+                </li>
+            </ul>
+        </section>
+
+        <section class="group-btns">
+            <div>
+                <label for="getDeposits">Ver depositos (abra o console).</label>
+                <br>
+                <button id="getDeposits">VISUALIZAR DEPÓSITOS</button>
+            </div>
+            <br>
+            <div>
+                <label for="getTransfers">Ver transferencias (abra o console).</label>
+                <br>
+                <button id="getTransfers">VISUALIZAR TRANSFERENCIAS</button>
+            </div>
+            <br>
+            <div>
+                <label for="getLoans">Ver emprestimos (abra o console).</label>
+                <br>
+                <button id="getLoans">VISUALIZAR EMPRESTIMOS</button>
+            </div>
+            <br>
+            <div>
+                <label for="getUsers">Ver usuarios (abra o console).</label>
+                <br>
+                <button id="getUsers">VISUALIZAR USUARIOS</button>
+            </div>
+        </section>
     </main>
 
     <script src="../src/index.js" type="module"></script>

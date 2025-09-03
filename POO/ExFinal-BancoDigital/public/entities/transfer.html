@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transferência</title>
+</head>
+
+<body>
+    <header>
+        <h1>Área de transferência</h1>
+    </header>
+
+    <main>
+        <section class="sections">
+            <ul>
+                <div>
+                    <h2>Seções:</h2>
+                </div>
+                <li>
+                    <a href="../index.html">Página inicial</a>
+                </li>
+                <li>
+                    <a href="./deposit.html">Área de depósito</a>
+                </li>
+                <li>
+                    <a href="./loans.html">Área de emprestimos</a>
+                </li>
+                <li>
+                    <a href="./users.html">Área de criação de usuarios</a>
+                </li>
+            </ul>
+        </section>
+
+        <section class="transfer-sct">
+            <h2>Insira as informações para a transferência.</h2>
+            <form id="transferForm">
+                <div class="date-tsf-group">
+                    <label for="dateTsf" class="label-tsf">Escolha uma data para programar a transferência, ou transfira hoje mesmo clicando
+                        no botão "transferir hoje".
+                    </label>
+                    <br>
+                    <input type="date" name="date-tsf" id="dateTsf">
+                    <button id="transferToday">TRANSFERIR HOJE</button>
+                </div>
+                <br>
+                <div class="name-sender-tsf-group">
+                    <label for="nameSenderAccountTsf" class="label-sender-name-tsf">Nome da conta que ENVIARÁ o dinheiro, o remetente (nome do úsuario).
+                    </label>
+                    <br>
+                    <input type="text" name="name-sender-account-tsf" id="nameSenderAccountTsf">
+                </div>
+                <br>
+                <div class="value-tsf-group">
+                    <label for="valueTsf" class="value-label-tsf">Informe o valor a ser depósitado.</label>
+                    <br>
+                    <input type="number" name="value-tsf" id="valueTsf">
+                </div>
+                <br>
+                <div class="name-recipient-tsf-group">
+                    <label for="nameRecipientAccountTsf" class="label-recipient-name-tsf">Nome da conta que RECEBERÁ o dinheiro, o destinatário 
+                        (nome do úsuario).
+                    </label>
+                    <br>
+                    <input type="text" name="name-recipient-account-tsf" id="nameRecipientAccountTsf">
+                </div>
+                <br>
+                <div class="btn-tsf-group">
+                    <button type="submit">TRANSFERIR</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+</body>
+
+</html>

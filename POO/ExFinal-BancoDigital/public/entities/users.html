@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+</head>
+
+<body>
+    <header>
+        <h1>Área de transferência</h1>
+    </header>
+
+    <main>
+        <section class="sections">
+            <ul>
+                <div>
+                    <h2>Seções:</h2>
+                </div>
+                <li>
+                    <a href="../index.html">Página inicial</a>
+                </li>
+                <li>
+                    <a href="./deposit.html">Área de depósito</a>
+                </li>
+                <li>
+                    <a href="./transfer.html">Área de transferência</a>
+                </li>
+                <li>
+                    <a href="./loans.html">Área de emprestimos</a>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Insira as informações para cadastrar um usuario.</h2>
+            <form id="formUsers">
+                <div class="name-user-group">
+                    <label for="userName" class="user-name-label">Insira o nome do usuario.</label>
+                    <br>
+                    <input type="text" name="user-name" id="userName">
+                </div>
+                <br>
+                <div class="email-user-group">
+                    <label for="emailUser" class="label-email-user">Insira o email do usuario (precisa conter @, gmail e .com).</label>
+                    <br>
+                    <input type="text" name="email-user" id="emailUser">
+                </div>
+                <br>
+                <div class="password-user-group">
+                    <label for="passwordUser" class="password-user-label">Crie uma senha para o usuario (deve conter numeros e letras).</label>
+                    <br>
+                    <input type="password" name="password-user" id="passwordUser">
+                </div>
+                <br>
+                <div class="account-user-group">
+                    <label for="accountUser" class="account-user-label">Insira o número da conta.</label>
+                    <br>
+                    <input type="text" name="account-user" id="accountUser">
+                </div>
+                <br>
+                <div class="balance-user-group">
+                    <label for="balanceUser" class="balance-user-label">Qual capital o usuario terá em sua conta? Não e permitido usar "." e ","
+                        ou qualquer outro caractere especial.
+                    </label>
+                    <br>
+                    <input type="number" name="balance-user" id="balanceUser">
+                </div>
+                <br>
+                <div class="btn-create-user">
+                    <button type="submit">CRIAR USUARIO</button>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>

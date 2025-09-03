@@ -6,16 +6,33 @@ export class Account {
         loans: []
     }
 
-    find (key){
-        return this.#data[key];
+    get data(){
+        return this.#data;
     }
 
-    movementHistory(){
-        return this.#data.operations;
+    constructor() {
+        this.#loadFromStorage();
     }
 
-    loanHistory(){
-        return this.#data.loans;
+    // 🔹 Carrega os dados salvos do localStorage
+    #loadFromStorage() {
+        const savedData = localStorage.getItem("bankData");
+        if (savedData) {
+        this.#data = JSON.parse(savedData);
+        }
+    }
+
+    // 🔹 Salva os dados sempre que algo mudar
+    #saveToStorage() {
+        localStorage.setItem("bankData", JSON.stringify(this.#data));
+    }
+
+    getUserByName(name) {
+        return this.#data.users.find((u) => u.name === name);
+    }
+
+    getLoansByName(name) {
+        return this.#data.loans.find((l) => l.name === name);
     }
 
     saveUser(user){
@@ -26,30 +43,22 @@ export class Account {
         const userExist = this.#data.users.find((u) => u.email === user.email);
         if (!userExist){
             this.#data.users.push(user);
+            this.#saveToStorage();
         }
-    }
-
-    getUserByName(name) {
-        return this.#data.users.find((u) => u.name === name);
     }
 
     saveDeposit(deposit){
         this.#data.deposits.push(deposit);
+        this.#saveToStorage();
     }
 
     saveTransfer(transfer){
         this.#data.operations.push(transfer);
-    }
-
-    getLoansByName(name) {
-        return this.#data.loans.find((l) => l.name === name);
+        this.#saveToStorage();
     }
 
     saveLoan(loan){
         this.#data.loans.push(loan);
-    }
-
-    returnLoans(){
-        return this.#data.loans;
+        this.#saveToStorage();
     }
 }

@@ -21,8 +21,14 @@
                 </div>
                 <li>
                     <a href="../index.html">Página inicial</a>
-                    <a href="./transfer.html">Área de transferencia</a>
+                </li>
+                <li>
+                    <a href="./transfer.html">Área de transferência</a>
+                </li>
+                <li>
                     <a href="./loans.html">Área de emprestimos</a>
+                </li>
+                <li>
                     <a href="./users.html">Área de criação de usuarios</a>
                 </li>
             </ul>
@@ -30,6 +36,29 @@
 
         <section class="deposit-sct">
             <h2>Insira as informações para o deposito</h2>
+            <form id="formDeposits">
+                <div class="date-dpt-group">
+                    <label for="dateDpt" class="label-dpt">A data do depósito por padrão, será hoje.</label>
+                    <br>
+                    <input type="date" name="date-dpt" id="dateDpt" disabled>
+                </div>
+                <br>
+                <div class="name-account-dpt-group">
+                    <label for="nameAccountDpt" class="label-name-dpt">Nome da conta que recebera o dinheiro (nome do úsuario).</label>
+                    <br>
+                    <input type="text" name="name-account-dpt" id="nameAccountDpt">
+                </div>
+                <br>
+                <div class="value-dpt-group">
+                    <label for="valueDpt" class="value-label-dpt">Informe o valor a ser depósitado.</label>
+                    <br>
+                    <input type="number" name="value-dpt" id="valueDpt">
+                </div>
+                <br>
+                <div class="btn-dpt-group">
+                    <button type="submit">DEPOSITAR</button>
+                </div>
+            </form>
         </section>
     </main>
 </body>
