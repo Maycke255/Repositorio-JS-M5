@@ -14,7 +14,7 @@ export class Account {
         this.#loadFromStorage();
     }
 
-    // 🔹 Carrega os dados salvos do localStorage
+    //Carrega os dados salvos do localStorage
     #loadFromStorage() {
         const savedData = localStorage.getItem("bankData");
         if (savedData) {
@@ -22,7 +22,7 @@ export class Account {
         }
     }
 
-    // 🔹 Salva os dados sempre que algo mudar
+    //Salva os dados sempre que algo mudar
     #saveToStorage() {
         localStorage.setItem("bankData", JSON.stringify(this.#data));
     }
@@ -32,7 +32,7 @@ export class Account {
     }
 
     getLoansByName(name) {
-        return this.#data.loans.find((l) => l.name === name);
+        return this.#data.loans.filter((l) => l.name === name);
     }
 
     saveUser(user){
@@ -55,6 +55,14 @@ export class Account {
     saveTransfer(transfer){
         this.#data.operations.push(transfer);
         this.#saveToStorage();
+    }
+
+    updateUser(user) {
+        const index = this.#data.users.findIndex((u) => u.email === user.email);
+        if (index !== -1) {
+            this.#data.users[index] = user;
+            this.#saveToStorage();
+        }
     }
 
     saveLoan(loan){

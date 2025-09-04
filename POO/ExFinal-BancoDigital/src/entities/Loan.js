@@ -1,5 +1,5 @@
-import { Installment } from "./Installment";
-import { Operation } from "./Operarions";
+import { Installment } from "./Installment.js";
+import { Operation } from "./Operarions.js";
 
 export class Loan extends Operation {
     static #rates = 1.78; //Taxa de juros fixa

@@ -8,38 +8,38 @@ export { getDeposists, getUsers, getTransfers, getLoans }
 
 //Usuarios
 const formUsers = document.getElementById('formUsers');
-const userName = document.getElementById('userName').value;
-const email = document.getElementById('emailUser').value;
-const password = document.getElementById('passwordUser').value;
-const account = document.getElementById('accountUser').value;
-const balance = document.getElementById('balanceUser').value;
+const userNameInput = document.getElementById('userName');
+const emailInput = document.getElementById('emailUser');
+const passwordInput = document.getElementById('passwordUser');
+const accountInput = document.getElementById('accountUser');
+const balanceInput = document.getElementById('balanceUser');
 
-export { formUsers, userName, email, password, account, balance }
+export { formUsers, userNameInput, emailInput, passwordInput, accountInput, balanceInput }
 
 //Transferencias
 const transferForm = document.getElementById('transferForm');
-const dateTsf = document.getElementById('dateTsf').value;
+const dateTsf = document.getElementById('dateTsf');
 const transferToday = document.getElementById('transferToday');
-const nameSenderAccountTsf = document.getElementById('nameSenderAccountTsf').value;
-const valueTsf = document.getElementById('valueTsf').value;
-const nameRecipientAccountTsf = document.getElementById('nameRecipientAccountTsf').value;
+const nameSenderAccountTsf = document.getElementById('nameSenderAccountTsf');
+const valueTsf = document.getElementById('valueTsf');
+const nameRecipientAccountTsf = document.getElementById('nameRecipientAccountTsf');
 
 export { transferForm, dateTsf, transferToday, nameSenderAccountTsf, valueTsf, nameRecipientAccountTsf }
 
 //Deposito
 const formDeposits = document.getElementById('formDeposits');
-const dateDpt = document.getElementById('dateDpt').value;
-const nameAccountDpt = document.getElementById('nameAccountDpt').value;
-const valueDpt = document.getElementById('valueDpt').value;
+const dateDpt = document.getElementById('dateDpt');
+const nameAccountDpt = document.getElementById('nameAccountDpt');
+const valueDpt = document.getElementById('valueDpt');
 
 export { formDeposits, dateDpt, nameAccountDpt, valueDpt }
 
 //Emprestimos
 const formLoan = document.getElementById('formLoan');
-const dateLn = document.getElementById('dateLn').value;
+const dateLn = document.getElementById('dateLn');
 const loanToday = document.getElementById('loanToday');
-const userNameLoan = document.getElementById('userNameLoan').value;
-const valueLoan = document.getElementById('valueLoan').value;
-const numberOfInstallments = document.getElementById('numberOfInstallments').value;
+const userNameLoan = document.getElementById('userNameLoan');
+const valueLoan = document.getElementById('valueLoan');
+const numberOfInstallments = document.getElementById('numberOfInstallments');
 
 export { formLoan, dateLn, loanToday, userNameLoan, valueLoan, numberOfInstallments }

@@ -25,7 +25,9 @@ export class App {
 
         const user = App.#base.getUserByName(userName);
         if (user) {
-            user.saldo += value;
+            user.balance += value;
+            App.#base.updateUser(user);
+
             console.log(`Depósito de R$${value} feito na conta de ${user.name}`);
         }
     }
@@ -45,10 +47,13 @@ export class App {
         }
 
         // descontar do sender
-        if (sender.saldo >= value) {
-            sender.saldo -= value;
-            recipient.saldo += value;
+        if (sender.balance >= value) {
+            sender.balance -= value;
+            recipient.balance += value;
             console.log(`Transferência de R$${value} feita de ${sender.name} para ${recipient.name}`);
+
+            App.#base.updateUser(sender);
+            App.#base.updateUser(recipient);
         } else {
             console.log("Saldo insuficiente!");
         }
@@ -90,4 +95,3 @@ export class App {
         return App.#base.data.users;
     }
 }
-

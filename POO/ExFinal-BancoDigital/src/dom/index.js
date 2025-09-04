@@ -24,5 +24,5 @@ getTransfers.addEventListener('click', (event) => {
 getLoans.addEventListener('click', (event) => {
     event.preventDefault();
 
-    console.log(app.displayLoan)();
+    console.log(app.displayLoan());
 });
