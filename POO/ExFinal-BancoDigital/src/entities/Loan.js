@@ -2,13 +2,23 @@ import { Installment } from "./Installment.js";
 import { Operation } from "./Operarions.js";
 
 export class Loan extends Operation {
-    static #rates = 1.78; //Taxa de juros fixa
+    static #rates = 1.06; //Taxa de juros fixa (6%)
 
     constructor(date, value, name, installmentsCount){
         super(date, value);
         this.name = name;
-        this.installments = []; //Array para armazenar todos os emprestimos da pessoa
-        this.#generateInstallments(installmentsCount) //Gera as parcelas já calculadas
+
+        // 🔹 guarda o valor original sem juros
+        this.originalValue = value;
+
+        // calcula o valor total com juros
+        this.totalValue = Number((value * (1 + Loan.#rates)).toFixed(2));
+
+        // array com todas as parcelas
+        this.installments = [];
+
+        // Gera as parcelas já calculadas
+        this.#generateInstallments(installmentsCount);
     }
 
     static get rates(){
@@ -21,12 +31,13 @@ export class Loan extends Operation {
 
     //Método privado para a geração de parcelas
     #generateInstallments(installmentsCount){
-        const totalWithInterest = this.value * (1 + Loan.#rates) / installmentsCount ; //Multiplica o valor do emprestimo com o valor da taxa mais 1. Ex:
-        //valor do emprestimo 10000 * (1 + 0.05) = 10500
-        //10500 / 12 meses = 875 a parcela
+        // valor de cada parcela arredondado a 2 casas
+        const installmentValue = this.totalValue / installmentsCount;
 
         for (let i = 1; i <= installmentsCount; i++) {
-            this.installments.push(new Installment(totalWithInterest, i));
+            this.installments.push(
+                new Installment(Number(installmentValue.toFixed(2)), i)
+            );
         }
     }
 }

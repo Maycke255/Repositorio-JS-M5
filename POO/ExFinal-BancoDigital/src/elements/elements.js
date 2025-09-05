@@ -3,8 +3,9 @@ const getDeposists = document.getElementById('getDeposits');
 const getUsers = document.getElementById('getUsers');
 const getTransfers = document.getElementById('getTransfers');
 const getLoans = document.getElementById('getLoans');
+const clearData = document.getElementById('clearData');
 
-export { getDeposists, getUsers, getTransfers, getLoans }
+export { getDeposists, getUsers, getTransfers, getLoans, clearData }
 
 //Usuarios
 const formUsers = document.getElementById('formUsers');

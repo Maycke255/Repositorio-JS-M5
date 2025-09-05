@@ -15,8 +15,11 @@ formDeposits.addEventListener('submit', (ev) => {
     ev.preventDefault();
 
     const date = dateDpt.value;
-    const name = parseInt(nameAccountDpt.value);
-    const value = valueDpt.value;
+    const name = nameAccountDpt.value;
+    const value = parseInt(valueDpt.value);
 
     app.makeDeposit(date, value, name);
+
+    nameAccountDpt.value = '';
+    valueDpt.value = '';
 })

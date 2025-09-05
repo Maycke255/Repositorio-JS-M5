@@ -1,5 +1,5 @@
 import { App } from "../App.js";
-import { getDeposists, getUsers, getTransfers, getLoans } from '../elements/elements.js';
+import { getDeposists, getUsers, getTransfers, getLoans, clearData } from '../elements/elements.js';
 
 const app = new App();
 
@@ -26,3 +26,10 @@ getLoans.addEventListener('click', (event) => {
 
     console.log(app.displayLoan());
 });
+
+clearData.addEventListener('click', (event) => {
+    event.preventDefault(); 
+
+    app.clearDatabase()
+    console.log('Database apagada.')
+})

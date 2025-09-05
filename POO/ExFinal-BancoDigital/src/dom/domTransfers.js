@@ -13,7 +13,7 @@ transferToday.addEventListener('click', (ev) => {
     const year = today.getFullYear();
 
     dateTsf.value = `${year}-${month}-${day}`;
-})
+});
 
 transferForm.addEventListener('submit', (ev) => {
     ev.preventDefault();
@@ -24,5 +24,10 @@ transferForm.addEventListener('submit', (ev) => {
     const nameRecipient = nameRecipientAccountTsf.value;
 
     app.makeTransfer(date, value, nameSender, nameRecipient);
-    console.log(`Transfêrencia de ${value} realizada em ${date}, de ${nameSender} para ${nameRecipient}.`)
+    console.log(`Transfêrencia de ${value} realizada em ${date}, de ${nameSender} para ${nameRecipient}.`);
+
+    dateTsf.value = '';
+    nameSenderAccountTsf.value = '';
+    valueTsf.value = '';
+    nameRecipientAccountTsf.value = '';
 });

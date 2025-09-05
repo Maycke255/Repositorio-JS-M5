@@ -3,6 +3,7 @@ import { Deposit } from "./entities/Deposit.js";
 import { Transfer } from "./entities/Transfer.js";
 import { Account } from "./entities/Account.js";
 import { Loan } from "./entities/Loan.js";
+import { Installment } from './entities/Installment.js'
 
 export class App {
     static #base = new Account();
@@ -60,6 +61,7 @@ export class App {
     }
 
     //Espera receber algo como: date: 02/09/2025, 10000, 12
+    //Empréstimo
     takeOutALoan(date, value, name, installmentsCount){
         const existingLoans = App.#base.getLoansByName(name);
 
@@ -68,11 +70,22 @@ export class App {
             return;
         }
 
+        //  cria o empréstimo já com valor bruto, total e parcelas
         const loan = new Loan(date, value, name, installmentsCount);
+
+        //  adiciona o valor bruto na conta do usuário
+        const addLoanAccount = App.#base.getUserByName(name);
+        addLoanAccount.balance += value;
+
+        //  salva no banco (LocalStorage)
         App.#base.saveLoan(loan);
 
-        console.log(`Empréstimo de R$${value} criado para ${name}`);
-    }
+        console.log(
+            `Empréstimo de R$${loan.originalValue} criado para ${loan.name}.
+            Total a pagar (com juros): R$${loan.totalValue}.
+            Parcelas:`, loan.installments
+        );
+}
 
     //Exibição:
     find (key){
@@ -93,5 +106,9 @@ export class App {
 
     displayUsers(){
         return App.#base.data.users;
+    }
+
+    clearDatabase(){
+        App.#base.clearData();
     }
 }

@@ -69,4 +69,10 @@ export class Account {
         this.#data.loans.push(loan);
         this.#saveToStorage();
     }
+
+    //Apagar local storage
+    clearData() {
+        this.#data = { users: [], deposits: [], operations: [], loans: [] };
+        localStorage.removeItem("bankData"); // ou localStorage.clear() se geral
+    }
 }

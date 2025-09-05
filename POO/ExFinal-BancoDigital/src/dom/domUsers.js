@@ -14,5 +14,11 @@ formUsers.addEventListener('submit', (ev) => {
 
     app.createUser(userName, email, password, account, balance);
 
-    console.log(`👤 Usuario ${userName} criado!`)
+    console.log(`👤 Usuario ${userName} criado!`);
+
+    userNameInput.value = '';
+    emailInput.value = '';
+    passwordInput.value = '';
+    accountInput.value = '';
+    balanceInput.value = '';
 })
