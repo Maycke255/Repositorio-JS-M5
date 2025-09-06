@@ -3,7 +3,6 @@ import { Deposit } from "./entities/Deposit.js";
 import { Transfer } from "./entities/Transfer.js";
 import { Account } from "./entities/Account.js";
 import { Loan } from "./entities/Loan.js";
-import { Installment } from './entities/Installment.js'
 
 export class App {
     static #base = new Account();

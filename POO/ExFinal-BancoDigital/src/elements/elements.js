@@ -41,6 +41,7 @@ const dateLn = document.getElementById('dateLn');
 const loanToday = document.getElementById('loanToday');
 const userNameLoan = document.getElementById('userNameLoan');
 const valueLoan = document.getElementById('valueLoan');
+const newRates = document.getElementById('newRates');
 const numberOfInstallments = document.getElementById('numberOfInstallments');
 
-export { formLoan, dateLn, loanToday, userNameLoan, valueLoan, numberOfInstallments }
+export { formLoan, dateLn, loanToday, userNameLoan, valueLoan, newRates, numberOfInstallments }

@@ -2,7 +2,7 @@ import { Installment } from "./Installment.js";
 import { Operation } from "./Operarions.js";
 
 export class Loan extends Operation {
-    static #rates = 1.06; //Taxa de juros fixa (6%)
+    static #rates = 0.06; //Taxa de juros fixa (6%)
 
     constructor(date, value, name, installmentsCount){
         super(date, value);
